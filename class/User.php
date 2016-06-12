@@ -27,7 +27,7 @@ class User
             throw new Exception('帳號重複');
         if (strlen($password) < 8)
             throw new Exception('密碼小於8個位元');
-        $hash = password_hash($password);
+        $hash = password_hash($password, PASSWORD_DEFAULT);
         (new Database)->Update("INSERT INTO `users` (username, pwd) VALUES (?, ?)", [$username, $hash]);
     }
 }
