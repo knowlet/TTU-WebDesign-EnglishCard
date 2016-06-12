@@ -33,7 +33,7 @@ class Auth
 
     protected function getUser($username)
     {
-        return array_pop((new Database)->Query("SELECT * FROM `users` WHERE username = ?", [$username]));
+        return (new Database)->Query("SELECT * FROM `users` WHERE username = ?", [$username])[0];
     }
 
 }

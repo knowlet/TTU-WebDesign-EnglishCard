@@ -56,6 +56,5 @@ class Database extends PDO
             print "Error!: " . $e->getMessage() . "<br/>";
             die('資料庫操作失敗，請重試，若問題仍在，請通知管理單位。');
         }
-        $rs = $sth->fetchall();
     }
 }
