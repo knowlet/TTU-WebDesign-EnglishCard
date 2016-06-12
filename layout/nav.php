@@ -4,6 +4,7 @@
         <?php if ((new Auth)->check()): ?>
         <a id="card" class href="card.php">單字卡</a>
         <a id="test" class href="test.php">自我測驗</a>
+        <a href="logout.php">登出</a>
         <?php endif ?>
     </div>
 </nav>
