@@ -5,6 +5,7 @@ class Auth
 
     public function login($username, $password)
     {
+        $username = htmlentities($username);
         $user = $this->getUser($username);
         if(empty($user))
             throw new Exception('帳號不存在');

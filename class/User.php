@@ -23,6 +23,7 @@ class User
 
     public function createAccount($username, $password)
     {
+        $username = htmlentities($username);
         if ($this->isExist($username))
             throw new Exception('帳號重複');
         if (strlen($password) < 8)
