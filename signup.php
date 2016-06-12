@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST" novalidate>
             <div class="container">
                 <div class="col c12">
-                    <span class="addon">帳號</span><input type="email" class="smooth" name="user">
+                    <span class="addon">帳號</span><input type="text" class="smooth" name="user">
                 </div>
                 <div class="col c12">
                     <span class="addon">密碼</span><input type="password" class="smooth" name="pwd">
