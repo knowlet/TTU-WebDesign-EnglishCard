@@ -13,7 +13,7 @@ class User
 
     public function getVocabularyList($start, $end)
     {
-        return (new Database)->Query("SELECT `vocavId` FROM `vocabularies` DESC LIMIT $start, $end");
+        return (new Database)->Query("SELECT `vocabId` FROM `vocabularies` DESC LIMIT $start, $end");
     }
 
     public function isExist($username)

@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (Exception $e) {
             $ErrMsg = $e->getMessage();
         }
-
     }
 }
 
