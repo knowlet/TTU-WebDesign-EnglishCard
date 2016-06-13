@@ -34,7 +34,7 @@ class Database extends PDO
         }
     }
 
-    public function Query($sql, $value=[])
+    private function __query($sql, $value)
     {
         try {
             $sth = $this->prepare($sql);
@@ -43,6 +43,19 @@ class Database extends PDO
             print "Error!: " . $e->getMessage() . "<br/>";
             die('資料庫操作失敗，請重試，若問題仍在，請通知管理單位。');
         }
+        return $sth;
+    }
+
+    public function Query($sql, $value=[])
+    {
+        $sth = $this->__query($sql, $value);
+        $rs = $sth->fetch();
+        return $rs;
+    }
+
+    public function QueryAll($sql, $value=[])
+    {
+        $sth = $this->__query($sql, $value);
         $rs = $sth->fetchall();
         return $rs;
     }
