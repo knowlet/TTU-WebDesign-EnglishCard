@@ -5,13 +5,13 @@ class Card
     private $userId = "";
     function __construct()
     {
-        $this->$userId = (new Session)->auth['uid'];
+        $this->userId = (new Session)->auth['uid'];
     }
 
     public function addCard($term, $definition)
     {
         if (!(new Card)->isExist($term)) {
-            (new Database)->Update("INSERT INTO `cards` (ownerid, terms, definitions) VALUES (?, ?, ?)", [self->$userId, $term, $definition]);
+            (new Database)->Update("INSERT INTO `cards` (ownerid, terms, definitions) VALUES (?, ?, ?)", [$this->userId, $term, $definition]);
             return "新增成功";
         } else {
             throw new Exception('單字已存在');
@@ -21,7 +21,7 @@ class Card
     public function delCard($term)
     {
         if (!(new Card)->isExist($term)) {
-            (new Database)->Update("UPDATE `cards` SET `valid`= 'N' WHERE ownerid = ? AND terms = ?", [self->$userId, $term]);
+            (new Database)->Update("UPDATE `cards` SET `valid`= 'N' WHERE ownerid = ? AND terms = ?", [$this->userId, $term]);
             return "移除成功";
         } else {
             throw new Exception('單字不存在');
@@ -30,11 +30,11 @@ class Card
 
     protected function isExist($term)
     {
-        return (new Database)->Query("SELECT * FROM `cards` WHERE uid = ? AND terms = ? AND valid = 'Y'", [self->$userId, $term]);
+        return (new Database)->Query("SELECT * FROM `cards` WHERE ownerid = ? AND terms = ? AND valid = 'Y'", [$this->userId, $term]);
     }
 
     public function getCardList()
     {
-        return (new Database)->QueryAll("SELECT `terms`, `definitions` FROM `cards` WHERE ownerid = ? AND valid = 'Y'", [self->$userId]);
+        return (new Database)->QueryAll("SELECT `terms`, `definitions` FROM `cards` WHERE ownerid = ? AND valid = 'Y'", [$this->userId]);
     }
 }

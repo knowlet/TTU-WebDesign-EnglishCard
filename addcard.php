@@ -1,16 +1,18 @@
 <?php
 require_once __DIR__.'/class/autoload.php';
 $ErrMsg = null;
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['word']) && isset($_POST['definition']) && isset($_POST['example'])) {
-        try {
-            $word = $_POST['word'];
-            $definition = [];
-            $example = [];
+if (!(new Auth)->check()) {
+    $ErrMsg = '尚未登入，將跳轉至登入畫面...';
+    header("Refresh: 1; url=index.php");
+}
 
-            array_push($definition, $_POST['definition']);
-            array_push($example, $_POST['example']);
-            (new Card)->addCard($word, $definition, $example);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['term']) && isset($_POST['definition'])) {
+        try {
+            $term = $_POST['term'];
+            $definition = $_POST['definition'];
+
+            $ErrMsg = (new Card)->addCard($term, $definition);
         } catch (Exception $e) {
             $ErrMsg = $e->getMessage();
         }
@@ -40,13 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST">
             <div class="container">
                 <div class="col c12">
-                    <span class="addon">單字</span><input type="text" class="smooth" name="word">
+                    <span class="addon">單字</span><input type="text" class="smooth" name="term">
                 </div>
                 <div class="col c12">
                     <span class="addon">定義</span><input type="text" class="smooth" name="definition">
-                </div>
-                <div class="col c12">
-                    <span class="addon">範例</span><input type="text" class="smooth" name="example">
                 </div>
                 <div class="col c12">
                     <button type="subimt" class="btn btn-sm btn-b smooth">送出</button>
