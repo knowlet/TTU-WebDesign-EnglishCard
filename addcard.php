@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $term = $_POST['term'];
             $definition = $_POST['definition'];
-
             $ErrMsg = (new Card)->addCard($term, $definition);
         } catch (Exception $e) {
             $ErrMsg = $e->getMessage();

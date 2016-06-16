@@ -20,7 +20,7 @@ class Card
 
     public function delCard($term)
     {
-        if (!(new Card)->isExist($term)) {
+        if ((new Card)->isExist($term)) {
             (new Database)->Update("UPDATE `cards` SET `valid`= 'N' WHERE ownerid = ? AND terms = ?", [$this->userId, $term]);
             return "移除成功";
         } else {
