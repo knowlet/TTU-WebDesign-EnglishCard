@@ -40,6 +40,9 @@ class Card
 
     public function getCardRandomly($times)
     {
+        if ($times == 1) {
+            return (new Database)->Query("SELECT `terms`, `definitions` FROM `cards` WHERE ownerid = ? AND valid = 'Y' ORDER BY RAND() LIMIT 0,?", [$this->userId, $times]);
+        }
         return (new Database)->QueryAll("SELECT `terms`, `definitions` FROM `cards` WHERE ownerid = ? AND valid = 'Y' ORDER BY RAND() LIMIT 0,?", [$this->userId, $times]);
     }
 }
