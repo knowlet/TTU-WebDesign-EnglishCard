@@ -27,7 +27,7 @@ $records = (new Test)->getRecords();
 	        <h2>No record here.</h2>
 	        <h2>How about have a exam now?</h2>
 	        <?php endif ?>
-	        <a class="btn btn-a btn-sm smooth href="quiz.php">Start Exam</a>
+	        <a class="btn btn-a btn-sm smooth" href="quiz.php">Start Exam</a>
 	        <?php if ($records): ?>
 			<table class="col c12 smooth">
 				<thead>
