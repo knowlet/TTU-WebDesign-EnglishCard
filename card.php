@@ -5,7 +5,7 @@ if (!(new Auth)->check()) {
     $ErrMsg = '尚未登入，將跳轉至登入畫面...';
     header("Refresh: 1; url=index.php");
 }
-$card = (new Card)->getCardRandomly();
+$card = (new Card)->getCardRandomly(1);
 ?>
 <!DOCTYPE html>
 <html>
