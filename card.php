@@ -5,9 +5,7 @@ if (!(new Auth)->check()) {
     $ErrMsg = '尚未登入，將跳轉至登入畫面...';
     header("Refresh: 1; url=index.php");
 }
-$list = (new Card)->getVocabularyList();
-$selected = rand(0, count($list) - 1);
-$card = (new Card)->getCard($list[$selected][0]);
+$card = (new Card)->getCardRandomly();
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,11 +24,16 @@ $card = (new Card)->getCard($list[$selected][0]);
 			<?php if ((new Auth)->check()): ?>
             <h1>Hello, <?=(new Session)->auth['username']?></h1>
             <div class="col c12">
-                <h1><?php echo $card[0]; ?></h1>
-                <?php foreach (array_combine($card[1], $card[2]) as $define => $ex): ?>
-                <p><strong><?php echo $define; ?></strong></p>
-                <p><?php echo $ex; ?></p>
-                <?php endforeach ?>
+                <table>
+                    <tr>
+                        <td>單字</td>
+                        <td><?php echo $card['terms']; ?></td>   
+                    </tr>
+                    <tr>
+                        <td>定義</td>
+                        <td><?php echo $card['definitions']; ?></td>
+                    </tr>
+                </table>
             </div>
             <?php endif ?>
         </div>

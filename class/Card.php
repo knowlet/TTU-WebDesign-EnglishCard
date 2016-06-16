@@ -37,4 +37,9 @@ class Card
     {
         return (new Database)->QueryAll("SELECT `terms`, `definitions` FROM `cards` WHERE ownerid = ? AND valid = 'Y'", [$this->userId]);
     }
+
+    public function getCardRandomly()
+    {
+        return (new Database)->Query("SELECT `terms`, `definitions` FROM `cards` WHERE ownerid = ? AND valid = 'Y' ORDER BY RAND() LIMIT 0,1", [$this->userId]);
+    }
 }
