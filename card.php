@@ -23,6 +23,13 @@ $card = (new Card)->getCardRandomly(1);
 		<div class="container">
 			<?php if ((new Auth)->check()): ?>
             <h1>Hello, <?=(new Session)->auth['username']?></h1>
+			<?php if (!$card): ?>
+			<div>
+				<h2>您的單字庫是空的哦!</h2>
+				<h2>現在就去新增單字吧!</h2>
+				<a href="addcard.php" class="btn btn-sm btn-a smooth">新增單字</a>
+			</div>
+			<?php else: ?>
             <div class="col c12">
                 <table>
                     <tr>
@@ -34,7 +41,10 @@ $card = (new Card)->getCardRandomly(1);
                         <td><?php echo $card['definitions']; ?></td>
                     </tr>
                 </table>
+				<a href="edit.php" class="btn btn-sm btn-c smooth">移除單字</a>
+				<a href="addcard.php" class="btn btn-sm btn-a smooth">新增單字</a>
             </div>
+			<?php endif ?>
             <?php endif ?>
         </div>
         <?php require_once 'layout/script.php' ?>
