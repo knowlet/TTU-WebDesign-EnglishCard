@@ -21,6 +21,11 @@ class User
         return !empty((new Database)->Query("SELECT `uid` FROM `users` WHERE username = ?", [$username]));
     }
 
+    public function isExistById($id)
+    {
+        return !empty((new Database)->Query("SELECT `uid` FROM `users` WHERE uid = ?", [$id]));
+    }
+
     public function createAccount($username, $password)
     {
         $username = htmlentities($username);

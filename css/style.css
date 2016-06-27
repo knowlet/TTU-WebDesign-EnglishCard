@@ -4,3 +4,14 @@
 form input[type=text] {
     width: initial;
 }
+a.ico {
+	text-decoration: none;
+	color: inherit;
+}
+a.ico:hover {
+	text-decoration: none;
+	color: red;
+}
+input[type="text"] {
+	background: white;
+}

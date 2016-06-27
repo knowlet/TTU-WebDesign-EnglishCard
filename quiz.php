@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $result = (new Test)->verifyAnswers($anss, $ques);
     (new Test)->storeRecord($result);
-    header("Refresh: 1; url=index.php");
+    header("Location: test.php");
 }
 $quizs = (new Card)->getCardRandomly(10);
 $questions = [];
@@ -41,18 +41,18 @@ for ($i = 0; $i < count($quizs); $i++) {
     	<div class="container">
 			<?php if ($quizs): ?>
 			<form method="POST">
-				<table class="col c12 smooth">
+				<table class="table">
 					<thead>
 						<tr>
-							<th class="col c3">Answer</th>
-							<th class="col c6">Definitions</th>
+							<th class="">Answer</th>
+							<th class="">Definitions</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php for ($i = 0; $i < count($quizs); $i++): ?>
 						<tr>
-							<td class="col c3"><input type="text" name="<?php echo 'ans' . ($i+1); ?>"></td>
-							<td class="col c6"><?php echo $quizs[$i]['definitions']; ?></td>
+							<td class=""><input type="text" name="<?php echo 'ans' . ($i+1); ?>"></td>
+							<td class=""><?php echo $quizs[$i]['definitions']; ?></td>
 						</tr>
 						<?php endfor ?>
 					</tbody>

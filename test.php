@@ -29,20 +29,20 @@ $records = (new Test)->getRecords();
 	        <?php endif ?>
 	        <a class="btn btn-a btn-sm smooth" href="quiz.php">Start Exam</a>
 	        <?php if ($records): ?>
-			<table class="col c12 smooth">
+			<table class="table">
 				<thead>
 					<tr>
-						<th class="col c1">序號</th>
-						<th class="col c2">成績</th>
-						<th class="col c4">測驗時間</th>
+						<th class="">序號</th>
+						<th class="">成績</th>
+						<th class="">測驗時間</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php for ($i = count($records)-1; $i >= 0; $i--): ?>
 					<tr>
-						<td class="col c1"><?php echo $i+1; ?></td>
-						<td class="col c2"><?php echo $records[$i]['score']; ?></td>
-						<td class="col c4"><?php echo $records[$i]['dates']; ?></td>
+						<td class=""><?php echo $i+1; ?></td>
+						<td class=""><?php echo $records[$i]['score']; ?></td>
+						<td class=""><?php echo $records[$i]['dates']; ?></td>
 					</tr>
 					<?php endfor ?>
 				</tbody>

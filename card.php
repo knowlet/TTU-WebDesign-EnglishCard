@@ -30,8 +30,8 @@ $card = (new Card)->getCardRandomly(1);
 				<a href="addcard.php" class="btn btn-sm btn-a smooth">新增單字</a>
 			</div>
 			<?php else: ?>
-            <div class="col c12">
-                <table>
+            <div class="col c4">
+                <table class="table">
                     <tr>
                         <td>單字</td>
                         <td><?php echo $card['terms']; ?></td>   
@@ -41,8 +41,8 @@ $card = (new Card)->getCardRandomly(1);
                         <td><?php echo $card['definitions']; ?></td>
                     </tr>
                 </table>
-				<a href="edit.php" class="btn btn-sm btn-c smooth">移除單字</a>
-				<a href="addcard.php" class="btn btn-sm btn-a smooth">新增單字</a>
+                <a href="addcard.php" class="btn btn-sm btn-b smooth">新增單字</a>
+				<a href="edit.php" class="btn btn-sm btn-a smooth">檢視單字</a>
             </div>
 			<?php endif ?>
             <?php endif ?>

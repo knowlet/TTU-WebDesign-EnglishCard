@@ -43,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col c12">
                     <span class="addon">單字</span><input type="text" class="smooth" name="term">
                 </div>
-                <div class="col c12">
-                    <span class="addon">定義</span><input type="text" class="smooth" name="definition">
+                <div class="textarea col c12">
+                    <span class="addon">定義</span><textarea class="smooth" name="definition"></textarea>
                 </div>
                 <div class="col c12">
                     <button type="subimt" class="btn btn-sm btn-b smooth">送出</button>

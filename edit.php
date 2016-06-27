@@ -7,11 +7,11 @@ if (!(new Auth)->check()) {
 }
 
 $list = (new Card)->getCardList();
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['delete'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_GET['delCard'])) {
         try {
-            $delete = $_POST['delete'];
-            $ErrMsg = (new Card)->delCard($delete);
+            $delCard = $_GET['delCard'];
+            $ErrMsg = (new Card)->delCard($delCard);
             header("Refresh: 1; url=edit.php");
         } catch (Exception $e) {
             $ErrMsg = $e->getMessage();
@@ -35,22 +35,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<div class="container">
 			<?php if ((new Auth)->check()): ?>
             <h1>Hello, <?=(new Session)->auth['username']?></h1>
-            <?php foreach ($list as $card):?>
-            <form method="POST">
                 <div class="col c12">
-                    <div class="col c3">
-                        <textarea><?php echo $card['terms']; ?></textarea>
-                    </div>
-                    <div class="col c8">
-                        <textarea><?php echo $card['definitions']; ?></textarea>
-                    </div>
-                    <div class="col c1">
-                        <input type="hidden" name="delete" value="<?php echo $card['terms']; ?>">
-                        <button class="smooth" type="subimt"><i class="ico">ⓧ</i></button>
-                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>單字</td>
+                                <td>定義</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($list as $card):?>
+                            <tr>
+                                <td>
+                                    <a class="ico" href="?delCard=<?=$card['terms']?>"><i class="ico">ⓧ</i></a>
+                                </td>
+                                <td><?php echo $card['terms']; ?></td>
+                                <td><?php echo $card['definitions']; ?></td>   
+                            </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
-            <?php endforeach ?>
             <?php endif ?>
         </div>
         <?php require_once 'layout/script.php' ?>

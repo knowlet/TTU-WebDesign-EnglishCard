@@ -32,9 +32,16 @@ class Auth
         return is_array($session->auth);
     }
 
+    public static function isValid()
+    {
+        $session = new Session();
+        if ((new Database)->Query("SELECT `valid` FROM `users` WHERE uid = ?", [$session->auth['uid']])['valid'] == "N")
+            $session->remove('auth');
+    }
+
     protected function getUser($username)
     {
-        return (new Database)->Query("SELECT * FROM `users` WHERE username = ?", [$username]);
+        return (new Database)->Query("SELECT * FROM `users` WHERE username = ? AND `valid` = 'Y'", [$username]);
     }
 
 }
